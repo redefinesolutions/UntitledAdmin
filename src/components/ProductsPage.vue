@@ -113,124 +113,130 @@
       </div>
 
       <!-- Products Table -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-        <div v-for="product in products" :key="product.id" class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
-          <!-- Product Image Section -->
-          <div class="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-            <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            
-            <!-- Overlay with Actions -->
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2">
-                <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors duration-200">
-                  <i class="fas fa-eye text-blue-600"></i>
-                </button>
-                <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-50 transition-colors duration-200">
-                  <i class="fas fa-edit text-green-600"></i>
-                </button>
-                <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-purple-50 transition-colors duration-200">
-                  <i class="fas fa-robot text-purple-600"></i>
-                </button>
-              </div>
+      <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <!-- Table Header -->
+        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
+          <div class="grid grid-cols-12 gap-4 items-center text-sm font-semibold text-gray-700">
+            <div class="col-span-1">
+              <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
             </div>
-            
-            <!-- Status Badges -->
-            <div class="absolute top-3 left-3 flex flex-col space-y-2">
-              <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold shadow-sm">
-                {{ product.condition }}
-              </span>
-              <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-white bg-opacity-90 text-gray-700 shadow-sm">
-                {{ product.brand }}
-              </span>
+            <div class="col-span-4 flex items-center space-x-2">
+              <span>Product</span>
+              <i class="fas fa-sort text-gray-400 text-xs"></i>
             </div>
-            
-            <!-- AI Score Badge -->
-            <div class="absolute top-3 right-3">
-              <div class="flex items-center space-x-1 bg-white bg-opacity-95 rounded-full px-2 py-1 shadow-sm">
-                <div class="w-2 h-2 rounded-full" :class="getAIScoreColor(product.aiScore).replace('bg-', 'bg-')"></div>
-                <span class="text-xs font-bold" :class="getAIScoreTextColor(product.aiScore)">{{ product.aiScore }}%</span>
-              </div>
+            <div class="col-span-1 text-center">
+              <span>Brand</span>
             </div>
-            
-            <!-- Checkbox -->
-            <div class="absolute bottom-3 left-3">
-              <input type="checkbox" class="w-5 h-5 rounded border-2 border-white text-blue-600 focus:ring-blue-500 shadow-lg">
+            <div class="col-span-1 text-center">
+              <span>Location</span>
+            </div>
+            <div class="col-span-1 text-center">
+              <span>MSRP</span>
+            </div>
+            <div class="col-span-1 text-center">
+              <span>Sale Price</span>
+            </div>
+            <div class="col-span-1 text-center">
+              <span>AI Score</span>
+            </div>
+            <div class="col-span-1 text-center">
+              <span>Created By</span>
+            </div>
+            <div class="col-span-1 text-center">
+              <span>Actions</span>
             </div>
           </div>
-          
-          <!-- Product Info Section -->
-          <div class="p-5">
-            <!-- Product Name -->
-            <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-700 transition-colors duration-200">
-              {{ product.name }}
-            </h3>
-            
-            <!-- Product Details -->
-            <div class="space-y-2 mb-4">
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-500">Unit ID:</span>
-                <span class="font-mono text-gray-700 bg-gray-100 px-2 py-1 rounded">{{ product.unit }}</span>
+        </div>
+
+        <!-- Table Body -->
+        <div class="divide-y divide-gray-100">
+          <div v-for="product in products" :key="product.id" class="px-6 py-4 hover:bg-blue-50 transition-colors duration-200 group">
+            <div class="grid grid-cols-12 gap-4 items-center">
+              <!-- Checkbox -->
+              <div class="col-span-1">
+                <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
               </div>
               
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-500">Location:</span>
-                <span class="text-gray-700">{{ product.location || 'N/A' }}</span>
-              </div>
-              
-              <div class="text-xs text-gray-500 bg-gray-50 p-2 rounded-lg">
-                {{ product.category }}
-              </div>
-            </div>
-            
-            <!-- Pricing Section -->
-            <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 mb-4">
-              <div class="grid grid-cols-2 gap-3">
-                <div class="text-center">
-                  <div class="text-xs text-gray-500 mb-1">MSRP</div>
-                  <div class="text-sm font-bold text-gray-700">${{ product.msrp }}</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-xs text-gray-500 mb-1">Sale Price</div>
-                  <div class="text-lg font-bold text-green-600">${{ product.salePrice }}</div>
+              <!-- Product Info -->
+              <div class="col-span-4">
+                <div class="flex items-center space-x-4">
+                  <div class="relative">
+                    <img :src="product.image" :alt="product.name" class="w-14 h-14 rounded-lg object-cover shadow-sm">
+                    <div v-if="product.condition === 'New'" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-700 transition-colors duration-200">
+                      {{ product.name }}
+                    </h3>
+                    <p class="text-xs text-gray-500 font-mono">ID: {{ product.unit }}</p>
+                    <div class="flex items-center space-x-2 mt-1">
+                      <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium">
+                        {{ product.condition }}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
               
-              <div class="grid grid-cols-2 gap-3 mt-2 pt-2 border-t border-gray-200">
-                <div class="text-center">
-                  <div class="text-xs text-gray-500 mb-1">Our Cost</div>
-                  <div class="text-xs font-semibold text-gray-600">${{ product.ourCost }}</div>
+              <!-- Brand -->
+              <div class="col-span-1 text-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  {{ product.brand }}
+                </span>
+              </div>
+              
+              <!-- Location -->
+              <div class="col-span-1 text-center">
+                <span class="text-sm text-gray-600">{{ product.location || 'N/A' }}</span>
+              </div>
+              
+              <!-- MSRP -->
+              <div class="col-span-1 text-center">
+                <span class="text-sm font-semibold text-gray-900">${{ product.msrp }}</span>
+              </div>
+              
+              <!-- Sale Price -->
+              <div class="col-span-1 text-center">
+                <span class="text-sm font-bold text-green-600">${{ product.salePrice }}</span>
+              </div>
+              
+              <!-- AI Score -->
+              <div class="col-span-1 text-center">
+                <div class="flex items-center justify-center space-x-2">
+                  <div class="w-12 bg-gray-200 rounded-full h-2">
+                    <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-2 rounded-full transition-all duration-300"></div>
+                  </div>
+                  <span class="text-xs font-bold" :class="getAIScoreTextColor(product.aiScore)">{{ product.aiScore }}%</span>
                 </div>
-                <div class="text-center">
-                  <div class="text-xs text-gray-500 mb-1">IMAP</div>
-                  <div class="text-xs font-semibold text-gray-600">${{ product.imap }}</div>
+              </div>
+              
+              <!-- Created By -->
+              <div class="col-span-1 text-center">
+                <div class="flex items-center justify-center space-x-2">
+                  <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                    <span class="text-white text-xs font-bold">{{ product.createdBy.charAt(0) }}</span>
+                  </div>
+                  <div class="text-left">
+                    <div class="text-xs font-medium text-gray-900">{{ product.createdBy }}</div>
+                    <div class="text-xs text-gray-500">{{ product.createdDate }}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Footer Info -->
-            <div class="flex items-center justify-between text-xs text-gray-500">
-              <div class="flex items-center space-x-2">
-                <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                  <span class="text-white text-xs font-bold">{{ product.createdBy.charAt(0) }}</span>
+              
+              <!-- Actions -->
+              <div class="col-span-1 text-center">
+                <div class="flex items-center justify-center space-x-1">
+                  <button class="w-8 h-8 bg-blue-100 hover:bg-blue-200 rounded-lg flex items-center justify-center transition-colors duration-200">
+                    <i class="fas fa-eye text-blue-600 text-xs"></i>
+                  </button>
+                  <button class="w-8 h-8 bg-green-100 hover:bg-green-200 rounded-lg flex items-center justify-center transition-colors duration-200">
+                    <i class="fas fa-edit text-green-600 text-xs"></i>
+                  </button>
+                  <button class="w-8 h-8 bg-purple-100 hover:bg-purple-200 rounded-lg flex items-center justify-center transition-colors duration-200">
+                    <i class="fas fa-robot text-purple-600 text-xs"></i>
+                  </button>
                 </div>
-                <span>{{ product.createdBy }}</span>
               </div>
-              <div class="text-right">
-                <div>{{ product.createdDate }}</div>
-                <div class="text-gray-400">{{ product.createdTime }}</div>
-              </div>
-            </div>
-            
-            <!-- AI Optimization Bar -->
-            <div class="mt-4 pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-medium text-gray-600">AI Optimization</span>
-                <span class="text-xs font-bold" :class="getAIScoreTextColor(product.aiScore)">{{ product.aiScore }}%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2 shadow-inner">
-                <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-2 rounded-full transition-all duration-500 shadow-sm"></div>
-              </div>
-              <div class="text-xs text-gray-500 mt-1">{{ getAIRecommendation(product.aiScore) }}</div>
             </div>
           </div>
         </div>
