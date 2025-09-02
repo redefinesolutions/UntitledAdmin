@@ -114,28 +114,59 @@
 
       <!-- Products Table -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
         <!-- Table Header -->
         <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
-          <div class="grid grid-cols-12 gap-6 items-center text-xs font-medium text-gray-500 uppercase tracking-wide">
-            <div class="col-span-1">
+          <div class="flex items-center gap-6 text-xs font-medium text-gray-500 uppercase tracking-wide min-w-max">
+            <div class="w-12 flex-shrink-0">
               <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
             </div>
-            <div class="col-span-5 flex items-center space-x-2">
+            <div class="w-80 flex-shrink-0 flex items-center space-x-2">
               <span>Product</span>
             </div>
-            <div class="col-span-1">
+            <div class="w-24 flex-shrink-0">
               <span>Brand</span>
             </div>
-            <div class="col-span-1">
+            <div class="w-32 flex-shrink-0">
+              <span>Category</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
+              <span>Condition</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
+              <span>Location</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
               <span>MSRP</span>
             </div>
-            <div class="col-span-1">
+            <div class="w-24 flex-shrink-0">
+              <span>Our Cost</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
+              <span>IMAP</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
               <span>Sale Price</span>
             </div>
-            <div class="col-span-1">
+            <div class="w-32 flex-shrink-0">
+              <span>Created Date</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
+              <span>Created Time</span>
+            </div>
+            <div class="w-32 flex-shrink-0">
+              <span>Created By</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
+              <span>Updated</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
+              <span>Updated Time</span>
+            </div>
+            <div class="w-24 flex-shrink-0">
               <span>AI Score</span>
             </div>
-            <div class="col-span-2">
+            <div class="w-32 flex-shrink-0">
               <span>Actions</span>
             </div>
           </div>
@@ -144,14 +175,14 @@
         <!-- Table Body -->
         <div class="divide-y divide-gray-100">
           <div v-for="product in products" :key="product.id" class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
-            <div class="grid grid-cols-12 gap-6 items-center">
+            <div class="flex items-center gap-6 min-w-max">
               <!-- Checkbox -->
-              <div class="col-span-1">
+              <div class="w-12 flex-shrink-0">
                 <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
               </div>
               
               <!-- Product Info -->
-              <div class="col-span-5">
+              <div class="w-80 flex-shrink-0">
                 <div class="flex items-center space-x-3">
                   <div class="flex-shrink-0">
                     <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
@@ -160,31 +191,87 @@
                     <h3 class="text-sm font-medium text-gray-900 truncate">
                       {{ product.name }}
                     </h3>
-                    <div class="flex items-center space-x-2 mt-1">
+                    <div class="flex items-center space-x-2 mt-1 text-xs text-gray-500">
                       <p class="text-xs text-gray-500">{{ product.unit }}</p>
-                      <span v-if="product.condition" class="text-xs text-gray-400">• {{ product.condition }}</span>
                     </div>
                   </div>
                 </div>
               </div>
               
               <!-- Brand -->
-              <div class="col-span-1">
+              <div class="w-24 flex-shrink-0">
                 <span class="text-sm text-gray-900">{{ product.brand }}</span>
               </div>
               
+              <!-- Category -->
+              <div class="w-32 flex-shrink-0">
+                <span class="text-xs text-gray-600 truncate block">{{ product.category }}</span>
+              </div>
+              
+              <!-- Condition -->
+              <div class="w-24 flex-shrink-0">
+                <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex px-2 py-1 text-xs font-medium rounded-full">
+                  {{ product.condition }}
+                </span>
+              </div>
+              
+              <!-- Location -->
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm text-gray-900">{{ product.location }}</span>
+              </div>
+              
               <!-- MSRP -->
-              <div class="col-span-1">
+              <div class="w-24 flex-shrink-0">
                 <span class="text-sm text-gray-900">${{ product.msrp }}</span>
               </div>
               
+              <!-- Our Cost -->
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm text-gray-900">${{ product.ourCost }}</span>
+              </div>
+              
+              <!-- IMAP -->
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm text-gray-900">${{ product.imap }}</span>
+              </div>
+              
               <!-- Sale Price -->
-              <div class="col-span-1">
+              <div class="w-24 flex-shrink-0">
                 <span class="text-sm font-medium text-gray-900">${{ product.salePrice }}</span>
               </div>
               
+              <!-- Created Date -->
+              <div class="w-32 flex-shrink-0">
+                <span class="text-sm text-gray-900">{{ product.createdDate }}</span>
+              </div>
+              
+              <!-- Created Time -->
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm text-gray-600">{{ product.createdTime }}</span>
+              </div>
+              
+              <!-- Created By -->
+              <div class="w-32 flex-shrink-0">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-xs text-white font-medium">{{ getInitials(product.createdBy) }}</span>
+                  </div>
+                  <span class="text-sm text-gray-900 truncate">{{ product.createdBy }}</span>
+                </div>
+              </div>
+              
+              <!-- Updated -->
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm text-gray-900">{{ product.updated }}</span>
+              </div>
+              
+              <!-- Updated Time -->
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm text-gray-600">{{ product.updatedTime }}</span>
+              </div>
+              
               <!-- AI Score -->
-              <div class="col-span-1">
+              <div class="w-24 flex-shrink-0">
                 <div class="flex items-center space-x-2">
                   <div class="w-16 bg-gray-200 rounded-full h-1.5">
                     <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-1.5 rounded-full"></div>
@@ -194,7 +281,7 @@
               </div>
               
               <!-- Actions -->
-              <div class="col-span-2">
+              <div class="w-32 flex-shrink-0">
                 <div class="flex items-center space-x-2">
                   <button class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors">
                     <i class="fas fa-eye text-sm"></i>
@@ -209,6 +296,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
@@ -449,6 +537,9 @@ export default {
       if (score >= 80) return 'Excellent optimization - product is performing well'
       if (score >= 60) return 'Good potential - consider price or description optimization'
       return 'Needs attention - multiple optimization opportunities available'
+    },
+    getInitials(name) {
+      return name.split(' ').map(n => n[0]).join('').toUpperCase()
     }
   }
 }
