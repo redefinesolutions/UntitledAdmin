@@ -10,42 +10,6 @@
       </div>
     </div>
 
-
-    <!-- User Profile Section at Bottom -->
-    <div class="p-4 border-t border-gray-200 relative">
-      <div @click="toggleProfileMenu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-       <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-         <i class="fas fa-user text-white text-sm"></i>
-       </div>
-       <div class="flex-1 min-w-0">
-         <p class="text-sm font-medium text-gray-900 truncate">Vipul Solanki</p>
-         <p class="text-xs text-gray-500 truncate">Admin • Online</p>
-       </div>
-       <div class="flex items-center space-x-2">
-         <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-         <i :class="showProfileMenu ? 'fas fa-chevron-down' : 'fas fa-chevron-up'" class="text-gray-400 text-xs transition-transform"></i>
-       </div>
-      </div>
-      
-      <!-- Profile Menu Popup -->
-      <div v-if="showProfileMenu" class="absolute bottom-full left-4 right-4 mb-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-        <div class="py-2">
-          <button @click="handleProfileAction('settings')" class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-user-cog w-4 h-4 mr-3 text-gray-400"></i>
-            Profile Settings
-          </button>
-          <button @click="handleProfileAction('notifications')" class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-bell w-4 h-4 mr-3 text-gray-400"></i>
-            Notifications
-          </button>
-          <div class="border-t border-gray-100 my-1"></div>
-          <button @click="handleProfileAction('signout')" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-            <i class="fas fa-sign-out-alt w-4 h-4 mr-3 text-red-400"></i>
-            Sign Out
-          </button>
-        </div>
-      </div>
-    </div>
     <!-- Navigation -->
     <nav class="flex-1 p-4 space-y-1">
       <!-- Dashboard -->
@@ -154,6 +118,42 @@
         Reports
       </div>
     </nav>
+
+    <!-- User Profile Section at Bottom -->
+    <div class="p-4 border-t border-gray-200 relative">
+      <div @click="toggleProfileMenu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
+       <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+         <i class="fas fa-user text-white text-sm"></i>
+       </div>
+       <div class="flex-1 min-w-0">
+         <p class="text-sm font-medium text-gray-900 truncate">Vipul Solanki</p>
+         <p class="text-xs text-gray-500 truncate">Admin • Online</p>
+       </div>
+       <div class="flex items-center space-x-2">
+         <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+         <i :class="showProfileMenu ? 'fas fa-chevron-down' : 'fas fa-chevron-up'" class="text-gray-400 text-xs transition-transform"></i>
+       </div>
+      </div>
+      
+      <!-- Profile Menu Popup -->
+      <div v-if="showProfileMenu" class="absolute bottom-full left-4 right-4 mb-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+        <div class="py-2">
+          <button @click="handleProfileAction('settings')" class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-user-cog w-4 h-4 mr-3 text-gray-400"></i>
+            Profile Settings
+          </button>
+          <button @click="handleProfileAction('notifications')" class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-bell w-4 h-4 mr-3 text-gray-400"></i>
+            Notifications
+          </button>
+          <div class="border-t border-gray-100 my-1"></div>
+          <button @click="handleProfileAction('signout')" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+            <i class="fas fa-sign-out-alt w-4 h-4 mr-3 text-red-400"></i>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
