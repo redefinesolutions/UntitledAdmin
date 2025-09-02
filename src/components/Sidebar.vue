@@ -1,5 +1,5 @@
 <template>
-  <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+  <div class="w-64 bg-white border-r border-gray-200 flex flex-col relative">
     <!-- Logo -->
     <div class="p-6 border-b border-gray-200">
       <div class="flex items-center space-x-2">
@@ -11,7 +11,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 p-4 space-y-1 pb-24">
+    <nav class="flex-1 p-4 space-y-1 pb-20">
       <!-- Dashboard -->
       <div class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100">
         <i class="fas fa-chart-bar w-5 h-5 mr-3 text-gray-400"></i>
@@ -120,7 +120,7 @@
     </nav>
 
     <!-- User Profile Section Fixed at Bottom -->
-    <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+    <div class="p-4 border-t border-gray-200 bg-white mt-auto">
       <div @click="toggleProfileMenu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
          <i class="fas fa-user text-white text-sm"></i>
