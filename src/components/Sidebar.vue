@@ -10,6 +10,39 @@
       </div>
     </div>
 
+
+   <!-- User Profile Section at Bottom -->
+   <div class="p-4 border-t border-gray-200">
+     <div class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
+       <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+         <i class="fas fa-user text-white text-sm"></i>
+       </div>
+       <div class="flex-1 min-w-0">
+         <p class="text-sm font-medium text-gray-900 truncate">Vipul Solanki</p>
+         <p class="text-xs text-gray-500 truncate">Admin • Online</p>
+       </div>
+       <div class="flex items-center space-x-2">
+         <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+         <i class="fas fa-chevron-up text-gray-400 text-xs"></i>
+       </div>
+     </div>
+     
+     <!-- Quick Actions -->
+     <div class="mt-2 space-y-1">
+       <button class="w-full flex items-center px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-100">
+         <i class="fas fa-user-cog w-4 h-4 mr-3 text-gray-400"></i>
+         Profile Settings
+       </button>
+       <button class="w-full flex items-center px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-100">
+         <i class="fas fa-bell w-4 h-4 mr-3 text-gray-400"></i>
+         Notifications
+       </button>
+       <button class="w-full flex items-center px-3 py-2 text-sm text-red-600 rounded-md hover:bg-red-50">
+         <i class="fas fa-sign-out-alt w-4 h-4 mr-3 text-red-400"></i>
+         Sign Out
+       </button>
+     </div>
+   </div>
     <!-- Navigation -->
     <nav class="flex-1 p-4 space-y-1">
       <!-- Dashboard -->
