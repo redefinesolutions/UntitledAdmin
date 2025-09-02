@@ -120,7 +120,7 @@
     </nav>
 
     <!-- User Profile Section Fixed at Bottom -->
-    <div class="p-4 border-t border-gray-200 bg-white flex-shrink-0">
+    <div class="p-4 border-t border-gray-200 bg-white flex-shrink-0 relative">
       <div @click="toggleProfileMenu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
          <i class="fas fa-user text-white text-sm"></i>
@@ -136,7 +136,7 @@
       </div>
       
       <!-- Profile Menu Popup -->
-      <div v-if="showProfileMenu" class="absolute bottom-full left-4 right-4 mb-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+      <div v-if="showProfileMenu" class="absolute bottom-full left-0 right-0 mb-2 mx-4 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
         <div class="py-2">
           <button @click="handleProfileAction('settings')" class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             <i class="fas fa-user-cog w-4 h-4 mr-3 text-gray-400"></i>
