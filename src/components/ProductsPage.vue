@@ -113,69 +113,113 @@
       </div>
 
       <!-- Products Table -->
-      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+            <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
               <tr>
                 <th class="px-6 py-3 text-left">
-                  <input type="checkbox" class="rounded border-gray-300">
+                  <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Brand</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Condition</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">MSRP ($)</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Our Cost ($)</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IMAP ($)</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sale Price ($)</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Score</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <div class="flex items-center space-x-1">
+                    <span>Image</span>
+                    <i class="fas fa-sort text-gray-400 text-xs"></i>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <div class="flex items-center space-x-1">
+                    <span>Product Name</span>
+                    <i class="fas fa-sort text-gray-400 text-xs"></i>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Unit</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Brand</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Category</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Condition</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Location</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <div class="flex items-center space-x-1">
+                    <span>MSRP ($)</span>
+                    <i class="fas fa-sort text-gray-400 text-xs"></i>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Our Cost ($)</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">IMAP ($)</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <div class="flex items-center space-x-1">
+                    <span>Sale Price ($)</span>
+                    <i class="fas fa-sort text-gray-400 text-xs"></i>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Created Date</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Created By</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Updated</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <div class="flex items-center space-x-1">
+                    <span>AI Score</span>
+                    <i class="fas fa-sort text-gray-400 text-xs"></i>
+                  </div>
+                </th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="product in products" :key="product.id" class="hover:bg-gray-50">
+            <tbody class="bg-white divide-y divide-gray-100">
+              <tr v-for="product in products" :key="product.id" class="hover:bg-blue-50/30 transition-colors duration-200 group">
                 <td class="px-6 py-4">
-                  <input type="checkbox" class="rounded border-gray-300">
+                  <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                 </td>
                 <td class="px-6 py-4">
-                  <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
+                  <div class="relative">
+                    <img :src="product.image" :alt="product.name" class="w-14 h-14 rounded-lg object-cover shadow-sm border border-gray-200 group-hover:shadow-md transition-shadow duration-200">
+                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" v-if="product.condition === 'New'"></div>
+                  </div>
                 </td>
                 <td class="px-6 py-4">
-                  <div class="text-sm font-medium text-gray-900">{{ product.name }}</div>
+                  <div class="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-200">{{ product.name }}</div>
+                  <div class="text-xs text-gray-500 mt-1">ID: {{ product.unit }}</div>
                 </td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.unit }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.brand }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.category }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.condition }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.location }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.msrp }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.ourCost }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.imap }}</td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.salePrice }}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">{{ product.unit }}</td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    {{ product.brand }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-xs text-gray-600">{{ product.category }}</td>
+                <td class="px-6 py-4">
+                  <span :class="getConditionBadge(product.condition)" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
+                    {{ product.condition || 'N/A' }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-600">{{ product.location || 'N/A' }}</td>
+                <td class="px-6 py-4 text-sm font-semibold text-gray-900">${{ product.msrp }}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">${{ product.ourCost }}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">${{ product.imap }}</td>
+                <td class="px-6 py-4 text-sm font-semibold text-green-600">${{ product.salePrice }}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">
                   <div>{{ product.createdDate }}</div>
-                  <div class="text-xs">{{ product.createdTime }}</div>
+                  <div class="text-xs text-gray-400">{{ product.createdTime }}</div>
                 </td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ product.createdBy }}</td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                      <span class="text-white text-xs font-medium">{{ product.createdBy.charAt(0) }}</span>
+                    </div>
+                    <span class="text-sm text-gray-700">{{ product.createdBy }}</span>
+                  </div>
+                </td>
                 <td class="px-6 py-4 text-sm text-gray-500">
                   <div>{{ product.updated }}</div>
-                  <div class="text-xs">{{ product.updatedTime }}</div>
+                  <div class="text-xs text-gray-400">{{ product.updatedTime }}</div>
                 </td>
                 <td class="px-6 py-4">
                   <div class="flex items-center space-x-2">
                     <div class="flex items-center">
-                      <div class="w-16 bg-gray-200 rounded-full h-2">
-                        <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-2 rounded-full"></div>
+                      <div class="w-20 bg-gray-200 rounded-full h-2.5 shadow-inner">
+                        <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-2.5 rounded-full transition-all duration-300"></div>
                       </div>
-                      <span class="ml-2 text-xs font-medium text-gray-700">{{ product.aiScore }}%</span>
+                      <span class="ml-2 text-xs font-semibold" :class="getAIScoreTextColor(product.aiScore)">{{ product.aiScore }}%</span>
                     </div>
-                    <button class="text-blue-600 hover:text-blue-700" :title="getAIRecommendation(product.aiScore)">
+                    <button class="text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded-full p-1 transition-colors duration-200" :title="getAIRecommendation(product.aiScore)">
                       <i class="fas fa-info-circle text-xs"></i>
                     </button>
                   </div>
@@ -186,25 +230,25 @@
         </div>
 
         <!-- Pagination -->
-        <div class="bg-white px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+        <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-t border-gray-100 flex items-center justify-between">
           <div class="flex items-center space-x-2">
-            <select class="border border-gray-300 rounded-md px-3 py-1 text-sm">
+            <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-500 focus:border-blue-500 bg-white shadow-sm">
               <option>25 Per Page</option>
               <option>50 Per Page</option>
               <option>100 Per Page</option>
             </select>
-            <span class="text-sm text-gray-700">Total Records: 80263</span>
+            <span class="text-sm font-medium text-gray-700">Total Records: <span class="text-blue-600">80,263</span></span>
           </div>
           <div class="flex items-center space-x-2">
-            <button class="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
+            <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-sm">
               <i class="fas fa-chevron-left"></i>
             </button>
-            <button class="px-3 py-1 text-sm bg-blue-600 text-white rounded-md">1</button>
-            <button class="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50">2</button>
+            <button class="px-3 py-2 text-sm bg-blue-600 text-white rounded-lg shadow-sm">1</button>
+            <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-sm">2</button>
             <span class="px-2 text-sm text-gray-500">...</span>
-            <button class="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50">3210</button>
-            <button class="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50">3211</button>
-            <button class="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
+            <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-sm">3210</button>
+            <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-sm">3211</button>
+            <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-sm">
               <i class="fas fa-chevron-right"></i>
             </button>
           </div>
@@ -408,6 +452,16 @@ export default {
       if (score >= 80) return 'bg-green-500'
       if (score >= 60) return 'bg-yellow-500'
       return 'bg-red-500'
+    },
+    getAIScoreTextColor(score) {
+      if (score >= 80) return 'text-green-600'
+      if (score >= 60) return 'text-yellow-600'
+      return 'text-red-600'
+    },
+    getConditionBadge(condition) {
+      if (condition === 'New') return 'bg-green-100 text-green-800'
+      if (condition === 'Used') return 'bg-blue-100 text-blue-800'
+      return 'bg-gray-100 text-gray-800'
     },
     getAIRecommendation(score) {
       if (score >= 80) return 'Excellent optimization - product is performing well'
