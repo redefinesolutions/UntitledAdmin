@@ -217,25 +217,7 @@
               </div>
             </div>
           </div>
-            <div class="col-span-1">
-              <span>Condition</span>
-            </div>
-            <div class="col-span-1">
-              <span>Sale Price</span>
-            </div>
-            <div class="col-span-1">
-              <span>AI Score</span>
-            </div>
-            <div class="col-span-1">
-              <span>Actions</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Table Body -->
-        <div class="divide-y divide-gray-100">
-          <div v-for="product in products" :key="product.id" class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
-            <div class="grid grid-cols-12 gap-4 items-center">
           <!-- Table Body -->
           <div class="divide-y divide-gray-100">
             <div v-for="product in products" :key="product.id" class="px-6 py-4 hover:bg-gray-50 transition-colors duration-200">
