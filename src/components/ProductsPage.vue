@@ -108,21 +108,115 @@
       <!-- Products Table -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div class="overflow-x-auto">
-        <!-- Table Header -->
-        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
-          <div class="grid grid-cols-12 gap-4 text-xs font-medium text-gray-500 uppercase tracking-wide">
-            <div class="w-12 flex-shrink-0">
-              <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+          <!-- Table Header -->
+          <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+            <div class="flex min-w-max text-xs font-medium text-gray-500 uppercase tracking-wide">
+              <div class="w-12 flex-shrink-0 flex items-center">
+                <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+              </div>
+              <div class="w-16 flex-shrink-0">IMAGE</div>
+              <div class="w-80 flex-shrink-0 flex items-center">
+                PRODUCT NAME
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-24 flex-shrink-0 flex items-center">
+                UNIT
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-24 flex-shrink-0 flex items-center">
+                BRAND
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-48 flex-shrink-0 flex items-center">
+                CATEGORY
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-24 flex-shrink-0">CONDITION</div>
+              <div class="w-24 flex-shrink-0">LOCATION</div>
+              <div class="w-24 flex-shrink-0 flex items-center">
+                MSRP ($)
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-28 flex-shrink-0 flex items-center">
+                OUR COST ($)
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-24 flex-shrink-0 flex items-center">
+                IMAP ($)
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-28 flex-shrink-0 flex items-center">
+                SALE PRICE ($)
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-32 flex-shrink-0 flex items-center">
+                CREATED DATE
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-28 flex-shrink-0 flex items-center">
+                CREATED BY
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-32 flex-shrink-0 flex items-center">
+                UPDATED DATE
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-28 flex-shrink-0 flex items-center">
+                UPDATED BY
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-24 flex-shrink-0 flex items-center">
+                STATUS
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-28 flex-shrink-0 flex items-center">
+                DISCONTINUE
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
             </div>
-            <div class="col-span-4">
-              <span>Product</span>
-            </div>
-            <div class="col-span-1">
-              <span>Brand</span>
-            </div>
-            <div class="col-span-2">
-              <span>Category</span>
-            </div>
+          </div>
             <div class="col-span-1">
               <span>Condition</span>
             </div>
@@ -142,75 +236,111 @@
         <div class="divide-y divide-gray-100">
           <div v-for="product in products" :key="product.id" class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
             <div class="grid grid-cols-12 gap-4 items-center">
-              <!-- Checkbox -->
-              <div class="w-12 flex-shrink-0">
-                <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-              </div>
-              
-              <!-- Product Info -->
-              <div class="col-span-4">
-                <div class="flex items-center space-x-3">
-                  <div class="flex-shrink-0">
-                    <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
-                  </div>
-                  <div class="min-w-0 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 truncate">
-                      {{ product.name }}
-                    </h3>
-                    <p class="text-xs text-gray-500">{{ product.unit }}</p>
+          <!-- Table Body -->
+          <div class="divide-y divide-gray-100">
+            <div v-for="product in products" :key="product.id" class="px-6 py-4 hover:bg-gray-50 transition-colors duration-200">
+              <div class="flex min-w-max items-center text-sm">
+                <!-- Checkbox -->
+                <div class="w-12 flex-shrink-0">
+                  <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                </div>
+                
+                <!-- Image -->
+                <div class="w-16 flex-shrink-0">
+                  <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
+                </div>
+                
+                <!-- Product Name -->
+                <div class="w-80 flex-shrink-0">
+                  <h3 class="text-sm font-medium text-gray-900 truncate">{{ product.name }}</h3>
+                </div>
+                
+                <!-- Unit -->
+                <div class="w-24 flex-shrink-0">
+                  <span class="text-sm text-gray-600">{{ product.unit }}</span>
+                </div>
+                
+                <!-- Brand -->
+                <div class="w-24 flex-shrink-0">
+                  <span class="text-sm text-gray-900">{{ product.brand }}</span>
+                </div>
+                
+                <!-- Category -->
+                <div class="w-48 flex-shrink-0">
+                  <span class="text-sm text-gray-600 truncate block">{{ product.category }}</span>
+                </div>
+                
+                <!-- Condition -->
+                <div class="w-24 flex-shrink-0">
+                  <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex px-2 py-1 text-xs font-medium rounded-full">
+                    {{ product.condition }}
+                  </span>
+                </div>
+                
+                <!-- Location -->
+                <div class="w-24 flex-shrink-0">
+                  <span class="text-sm text-gray-600">{{ product.location || '-' }}</span>
+                </div>
+                
+                <!-- MSRP -->
+                <div class="w-24 flex-shrink-0">
+                  <span class="text-sm text-gray-900">${{ product.msrp }}</span>
+                </div>
+                
+                <!-- Our Cost -->
+                <div class="w-28 flex-shrink-0">
+                  <span class="text-sm text-gray-900">${{ product.ourCost }}</span>
+                </div>
+                
+                <!-- IMAP -->
+                <div class="w-24 flex-shrink-0">
+                  <span class="text-sm text-gray-900">${{ product.imap }}</span>
+                </div>
+                
+                <!-- Sale Price -->
+                <div class="w-28 flex-shrink-0">
+                  <span class="text-sm font-medium text-gray-900">${{ product.salePrice }}</span>
+                </div>
+                
+                <!-- Created Date -->
+                <div class="w-32 flex-shrink-0">
+                  <span class="text-sm text-gray-600">{{ product.createdDate }}</span>
+                </div>
+                
+                <!-- Created By -->
+                <div class="w-28 flex-shrink-0">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                      <span class="text-xs text-white font-medium">{{ getInitials(product.createdBy) }}</span>
+                    </div>
+                    <span class="text-sm text-gray-600 truncate">{{ product.createdBy }}</span>
                   </div>
                 </div>
-              </div>
-              
-              <!-- Brand -->
-              <div class="col-span-1">
-                <span class="text-sm text-gray-900">{{ product.brand }}</span>
-              </div>
-              
-              <!-- Category -->
-              <div class="col-span-2">
-                <span class="text-xs text-gray-600 truncate block">{{ product.category }}</span>
-              </div>
-              
-              <!-- Condition -->
-              <div class="col-span-1">
-                <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex px-2 py-1 text-xs font-medium rounded-full">
-                  {{ product.condition }}
-                </span>
-              </div>
-              
-              <!-- Sale Price -->
-              <div class="col-span-1">
-                <span class="text-sm font-medium text-gray-900">${{ product.salePrice }}</span>
-              </div>
-              
-              <!-- AI Score -->
-              <div class="col-span-1">
-                <div class="flex items-center space-x-2">
-                  <div class="w-16 bg-gray-200 rounded-full h-1.5">
-                    <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-1.5 rounded-full"></div>
-                  </div>
-                  <span class="text-xs text-gray-600">{{ product.aiScore }}%</span>
+                
+                <!-- Updated Date -->
+                <div class="w-32 flex-shrink-0">
+                  <span class="text-sm text-gray-600">{{ product.updated }}</span>
                 </div>
-              </div>
-              
-              <!-- Actions -->
-              <div class="col-span-1">
-                <div class="flex items-center space-x-2">
-                  <button @click="viewProduct(product.id)" class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" title="View Product">
-                    <i class="fas fa-eye text-sm"></i>
-                  </button>
-                  <button @click="editProduct(product.id)" class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors" title="Edit Product">
-                    <i class="fas fa-edit text-sm"></i>
-                  </button>
-                  <button @click="openAIModal(product)" class="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-md transition-colors" title="AI Optimize">
-                    <i class="fas fa-robot text-sm"></i>
-                  </button>
+                
+                <!-- Updated By -->
+                <div class="w-28 flex-shrink-0">
+                  <span class="text-sm text-gray-600">-</span>
+                </div>
+                
+                <!-- Status -->
+                <div class="w-24 flex-shrink-0">
+                  <span class="inline-flex px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                    Active
+                  </span>
+                </div>
+                
+                <!-- Discontinue -->
+                <div class="w-28 flex-shrink-0">
+                  <span class="text-sm text-gray-600">No</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
 
