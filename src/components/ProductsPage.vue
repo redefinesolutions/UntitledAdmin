@@ -87,74 +87,20 @@
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
             <input 
               type="text" 
-              placeholder="Search products, brands, categories..." 
+              placeholder="Search products..." 
               class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             >
           </div>
           
-          <!-- Quick Filters -->
-          <div class="flex items-center space-x-2">
-            <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
-              <option>All Brands</option>
-              <option>Kubota</option>
-              <option>Toro</option>
-              <option>Bandit</option>
-              <option>Bobcat</option>
-            </select>
-            
-            <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
-              <option>All Conditions</option>
-              <option>New</option>
-              <option>Used</option>
-            </select>
-            
-            <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
-              <option>All Locations</option>
-              <option>Shakopee</option>
-              <option>Anoka</option>
-              <option>Loretto</option>
-            </select>
-          </div>
         </div>
         
         <div class="flex items-center space-x-3">
-          <!-- Bulk Actions -->
-          <div class="flex items-center space-x-2 border-r border-gray-300 pr-3">
-            <button class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50" disabled>
-              <i class="fas fa-edit mr-2"></i>
-              Bulk Edit
-            </button>
-            <button class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50" disabled>
-              <i class="fas fa-trash mr-2"></i>
-              Delete
-            </button>
-          </div>
-          
-          <button class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
-            <i class="fas fa-columns mr-2"></i>
-            Edit Columns
-          </button>
-          
-          <div class="flex items-center space-x-1 bg-gray-100 rounded-md p-1">
-            <button class="px-2 py-1 text-sm bg-white rounded shadow-sm">
-              <i class="fas fa-list"></i>
-            </button>
-            <button class="px-2 py-1 text-sm text-gray-600 hover:bg-white hover:rounded hover:shadow-sm">
-              <i class="fas fa-th-large"></i>
-            </button>
-          </div>
-          
-          <button class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
-            <i class="fas fa-star mr-2"></i>
-            Save
-          </button>
           <button class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-filter mr-2"></i>
-            More Filters(0)
+            Filters
           </button>
-          <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-gradient-to-r from-green-500 to-teal-500 rounded-md hover:from-green-600 hover:to-teal-600">
-            <i class="fas fa-robot mr-2"></i>
-            AI Assistant
+          <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+            + Add Product
           </button>
         </div>
       </div>
@@ -164,77 +110,29 @@
         <div class="overflow-x-auto">
         <!-- Table Header -->
         <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
-          <div class="flex items-center gap-6 text-xs font-medium text-gray-500 uppercase tracking-wide min-w-max">
+          <div class="grid grid-cols-12 gap-4 text-xs font-medium text-gray-500 uppercase tracking-wide">
             <div class="w-12 flex-shrink-0">
-              <input type="checkbox" @change="toggleSelectAll" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+              <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
             </div>
-            <div class="w-80 flex-shrink-0 flex items-center space-x-2">
+            <div class="col-span-4">
               <span>Product</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
             </div>
-            <div class="w-24 flex-shrink-0">
+            <div class="col-span-1">
               <span>Brand</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
             </div>
-            <div class="w-32 flex-shrink-0">
+            <div class="col-span-2">
               <span>Category</span>
             </div>
-            <div class="w-24 flex-shrink-0">
+            <div class="col-span-1">
               <span>Condition</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
             </div>
-            <div class="w-24 flex-shrink-0">
-              <span>Location</span>
-            </div>
-            <div class="w-24 flex-shrink-0">
-              <span>MSRP</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
-            </div>
-            <div class="w-24 flex-shrink-0">
-              <span>Our Cost</span>
-            </div>
-            <div class="w-24 flex-shrink-0">
-              <span>IMAP</span>
-            </div>
-            <div class="w-24 flex-shrink-0">
+            <div class="col-span-1">
               <span>Sale Price</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
             </div>
-            <div class="w-32 flex-shrink-0">
-              <span>Created Date</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
-            </div>
-            <div class="w-24 flex-shrink-0">
-              <span>Created Time</span>
-            </div>
-            <div class="w-32 flex-shrink-0">
-              <span>Created By</span>
-            </div>
-            <div class="w-24 flex-shrink-0">
-              <span>Updated</span>
-            </div>
-            <div class="w-24 flex-shrink-0">
-              <span>Updated Time</span>
-            </div>
-            <div class="w-24 flex-shrink-0">
+            <div class="col-span-1">
               <span>AI Score</span>
-              <button class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-sort text-xs"></i>
-              </button>
             </div>
-            <div class="w-32 flex-shrink-0">
+            <div class="col-span-1">
               <span>Actions</span>
             </div>
           </div>
@@ -243,110 +141,51 @@
         <!-- Table Body -->
         <div class="divide-y divide-gray-100">
           <div v-for="product in products" :key="product.id" class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
-            <div class="flex items-center gap-6 min-w-max">
+            <div class="grid grid-cols-12 gap-4 items-center">
               <!-- Checkbox -->
               <div class="w-12 flex-shrink-0">
-                <input type="checkbox" v-model="product.selected" @change="updateBulkActions" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
               </div>
               
               <!-- Product Info -->
-              <div class="w-80 flex-shrink-0">
+              <div class="col-span-4">
                 <div class="flex items-center space-x-3">
                   <div class="flex-shrink-0">
-                    <div class="relative">
-                      <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
-                      <div v-if="product.condition === 'New'" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                    </div>
+                    <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
                   </div>
                   <div class="min-w-0 flex-1">
                     <h3 class="text-sm font-medium text-gray-900 truncate">
                       {{ product.name }}
                     </h3>
-                    <div class="flex items-center space-x-2 mt-1 text-xs text-gray-500">
-                      <p class="text-xs text-gray-500">{{ product.unit }}</p>
-                      <span v-if="product.isLowStock" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                        <i class="fas fa-exclamation-triangle mr-1"></i>
-                        Low Stock
-                      </span>
-                    </div>
+                    <p class="text-xs text-gray-500">{{ product.unit }}</p>
                   </div>
                 </div>
               </div>
               
               <!-- Brand -->
-              <div class="w-24 flex-shrink-0">
+              <div class="col-span-1">
                 <span class="text-sm text-gray-900">{{ product.brand }}</span>
               </div>
               
               <!-- Category -->
-              <div class="w-32 flex-shrink-0">
+              <div class="col-span-2">
                 <span class="text-xs text-gray-600 truncate block">{{ product.category }}</span>
               </div>
               
               <!-- Condition -->
-              <div class="w-24 flex-shrink-0">
+              <div class="col-span-1">
                 <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex px-2 py-1 text-xs font-medium rounded-full">
                   {{ product.condition }}
                 </span>
               </div>
               
-              <!-- Location -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-900">{{ product.location }}</span>
-              </div>
-              
-              <!-- MSRP -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-900">${{ product.msrp }}</span>
-              </div>
-              
-              <!-- Our Cost -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-900">${{ product.ourCost }}</span>
-              </div>
-              
-              <!-- IMAP -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-900">${{ product.imap }}</span>
-              </div>
-              
               <!-- Sale Price -->
-              <div class="w-24 flex-shrink-0">
+              <div class="col-span-1">
                 <span class="text-sm font-medium text-gray-900">${{ product.salePrice }}</span>
               </div>
               
-              <!-- Created Date -->
-              <div class="w-32 flex-shrink-0">
-                <span class="text-sm text-gray-900">{{ product.createdDate }}</span>
-              </div>
-              
-              <!-- Created Time -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-600">{{ product.createdTime }}</span>
-              </div>
-              
-              <!-- Created By -->
-              <div class="w-32 flex-shrink-0">
-                <div class="flex items-center space-x-2">
-                  <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-xs text-white font-medium">{{ getInitials(product.createdBy) }}</span>
-                  </div>
-                  <span class="text-sm text-gray-900 truncate">{{ product.createdBy }}</span>
-                </div>
-              </div>
-              
-              <!-- Updated -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-900">{{ product.updated }}</span>
-              </div>
-              
-              <!-- Updated Time -->
-              <div class="w-24 flex-shrink-0">
-                <span class="text-sm text-gray-600">{{ product.updatedTime }}</span>
-              </div>
-              
               <!-- AI Score -->
-              <div class="w-24 flex-shrink-0">
+              <div class="col-span-1">
                 <div class="flex items-center space-x-2">
                   <div class="w-16 bg-gray-200 rounded-full h-1.5">
                     <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-1.5 rounded-full"></div>
@@ -356,7 +195,7 @@
               </div>
               
               <!-- Actions -->
-              <div class="w-32 flex-shrink-0">
+              <div class="col-span-1">
                 <div class="flex items-center space-x-2">
                   <button @click="viewProduct(product.id)" class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" title="View Product">
                     <i class="fas fa-eye text-sm"></i>
@@ -367,22 +206,6 @@
                   <button @click="openAIModal(product)" class="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-md transition-colors" title="AI Optimize">
                     <i class="fas fa-robot text-sm"></i>
                   </button>
-                  <div class="relative">
-                    <button @click="toggleProductMenu(product.id)" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-md transition-colors">
-                      <i class="fas fa-ellipsis-v text-sm"></i>
-                    </button>
-                    <div v-if="product.showMenu" class="absolute right-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
-                      <button @click="duplicateProduct(product.id)" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <i class="fas fa-copy mr-2"></i>Duplicate
-                      </button>
-                      <button @click="archiveProduct(product.id)" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <i class="fas fa-archive mr-2"></i>Archive
-                      </button>
-                      <button @click="deleteProduct(product.id)" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                        <i class="fas fa-trash mr-2"></i>Delete
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -402,9 +225,6 @@
           </select>
           <span class="text-sm text-gray-700">
             Showing <span class="font-medium">1-12</span> of <span class="font-medium">80,263</span> products
-            <span v-if="selectedCount > 0" class="ml-2 text-blue-600">
-              ({{ selectedCount }} selected)
-            </span>
           </span>
         </div>
         <div class="flex items-center space-x-2">
