@@ -113,36 +113,29 @@
       </div>
 
       <!-- Products Table -->
-      <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <!-- Table Header -->
-        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
-          <div class="grid grid-cols-12 gap-4 items-center text-sm font-semibold text-gray-700">
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+          <div class="grid grid-cols-12 gap-6 items-center text-xs font-medium text-gray-500 uppercase tracking-wide">
             <div class="col-span-1">
               <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
             </div>
-            <div class="col-span-4 flex items-center space-x-2">
+            <div class="col-span-5 flex items-center space-x-2">
               <span>Product</span>
-              <i class="fas fa-sort text-gray-400 text-xs"></i>
             </div>
-            <div class="col-span-1 text-center">
+            <div class="col-span-1">
               <span>Brand</span>
             </div>
-            <div class="col-span-1 text-center">
-              <span>Location</span>
-            </div>
-            <div class="col-span-1 text-center">
+            <div class="col-span-1">
               <span>MSRP</span>
             </div>
-            <div class="col-span-1 text-center">
+            <div class="col-span-1">
               <span>Sale Price</span>
             </div>
-            <div class="col-span-1 text-center">
+            <div class="col-span-1">
               <span>AI Score</span>
             </div>
-            <div class="col-span-1 text-center">
-              <span>Created By</span>
-            </div>
-            <div class="col-span-1 text-center">
+            <div class="col-span-2">
               <span>Actions</span>
             </div>
           </div>
@@ -150,90 +143,67 @@
 
         <!-- Table Body -->
         <div class="divide-y divide-gray-100">
-          <div v-for="product in products" :key="product.id" class="px-6 py-4 hover:bg-blue-50 transition-colors duration-200 group">
-            <div class="grid grid-cols-12 gap-4 items-center">
+          <div v-for="product in products" :key="product.id" class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
+            <div class="grid grid-cols-12 gap-6 items-center">
               <!-- Checkbox -->
               <div class="col-span-1">
                 <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
               </div>
               
               <!-- Product Info -->
-              <div class="col-span-4">
-                <div class="flex items-center space-x-4">
-                  <div class="relative">
-                    <img :src="product.image" :alt="product.name" class="w-14 h-14 rounded-lg object-cover shadow-sm">
-                    <div v-if="product.condition === 'New'" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+              <div class="col-span-5">
+                <div class="flex items-center space-x-3">
+                  <div class="flex-shrink-0">
+                    <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-700 transition-colors duration-200">
+                  <div class="min-w-0 flex-1">
+                    <h3 class="text-sm font-medium text-gray-900 truncate">
                       {{ product.name }}
                     </h3>
-                    <p class="text-xs text-gray-500 font-mono">ID: {{ product.unit }}</p>
                     <div class="flex items-center space-x-2 mt-1">
-                      <span v-if="product.condition" :class="getConditionBadge(product.condition)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium">
-                        {{ product.condition }}
-                      </span>
+                      <p class="text-xs text-gray-500">{{ product.unit }}</p>
+                      <span v-if="product.condition" class="text-xs text-gray-400">• {{ product.condition }}</span>
                     </div>
                   </div>
                 </div>
               </div>
               
               <!-- Brand -->
-              <div class="col-span-1 text-center">
-                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                  {{ product.brand }}
-                </span>
-              </div>
-              
-              <!-- Location -->
-              <div class="col-span-1 text-center">
-                <span class="text-sm text-gray-600">{{ product.location || 'N/A' }}</span>
+              <div class="col-span-1">
+                <span class="text-sm text-gray-900">{{ product.brand }}</span>
               </div>
               
               <!-- MSRP -->
-              <div class="col-span-1 text-center">
-                <span class="text-sm font-semibold text-gray-900">${{ product.msrp }}</span>
+              <div class="col-span-1">
+                <span class="text-sm text-gray-900">${{ product.msrp }}</span>
               </div>
               
               <!-- Sale Price -->
-              <div class="col-span-1 text-center">
-                <span class="text-sm font-bold text-green-600">${{ product.salePrice }}</span>
+              <div class="col-span-1">
+                <span class="text-sm font-medium text-gray-900">${{ product.salePrice }}</span>
               </div>
               
               <!-- AI Score -->
-              <div class="col-span-1 text-center">
-                <div class="flex items-center justify-center space-x-2">
-                  <div class="w-12 bg-gray-200 rounded-full h-2">
-                    <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-2 rounded-full transition-all duration-300"></div>
+              <div class="col-span-1">
+                <div class="flex items-center space-x-2">
+                  <div class="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-1.5 rounded-full"></div>
                   </div>
-                  <span class="text-xs font-bold" :class="getAIScoreTextColor(product.aiScore)">{{ product.aiScore }}%</span>
-                </div>
-              </div>
-              
-              <!-- Created By -->
-              <div class="col-span-1 text-center">
-                <div class="flex items-center justify-center space-x-2">
-                  <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                    <span class="text-white text-xs font-bold">{{ product.createdBy.charAt(0) }}</span>
-                  </div>
-                  <div class="text-left">
-                    <div class="text-xs font-medium text-gray-900">{{ product.createdBy }}</div>
-                    <div class="text-xs text-gray-500">{{ product.createdDate }}</div>
-                  </div>
+                  <span class="text-xs text-gray-600">{{ product.aiScore }}%</span>
                 </div>
               </div>
               
               <!-- Actions -->
-              <div class="col-span-1 text-center">
-                <div class="flex items-center justify-center space-x-1">
-                  <button class="w-8 h-8 bg-blue-100 hover:bg-blue-200 rounded-lg flex items-center justify-center transition-colors duration-200">
-                    <i class="fas fa-eye text-blue-600 text-xs"></i>
+              <div class="col-span-2">
+                <div class="flex items-center space-x-2">
+                  <button class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors">
+                    <i class="fas fa-eye text-sm"></i>
                   </button>
-                  <button class="w-8 h-8 bg-green-100 hover:bg-green-200 rounded-lg flex items-center justify-center transition-colors duration-200">
-                    <i class="fas fa-edit text-green-600 text-xs"></i>
+                  <button class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors">
+                    <i class="fas fa-edit text-sm"></i>
                   </button>
-                  <button class="w-8 h-8 bg-purple-100 hover:bg-purple-200 rounded-lg flex items-center justify-center transition-colors duration-200">
-                    <i class="fas fa-robot text-purple-600 text-xs"></i>
+                  <button class="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-md transition-colors">
+                    <i class="fas fa-robot text-sm"></i>
                   </button>
                 </div>
               </div>
@@ -243,25 +213,25 @@
       </div>
 
       <!-- Pagination -->
-      <div class="mt-8 bg-white rounded-2xl shadow-lg border border-gray-100 px-6 py-4 flex items-center justify-between">
+      <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center space-x-4">
-          <select class="border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-blue-500 focus:border-blue-500 bg-white shadow-sm">
+          <select class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-blue-500 focus:border-blue-500 bg-white">
             <option>12 Per Page</option>
             <option>24 Per Page</option>
             <option>48 Per Page</option>
           </select>
-          <span class="text-sm font-medium text-gray-700">Total Records: <span class="text-blue-600 font-bold">80,263</span></span>
+          <span class="text-sm text-gray-700">Total Records: <span class="font-medium">80,263</span></span>
         </div>
         <div class="flex items-center space-x-2">
-          <button class="px-4 py-2 text-sm border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 shadow-sm">
+          <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="px-4 py-2 text-sm bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-sm">1</button>
-          <button class="px-4 py-2 text-sm border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 shadow-sm">2</button>
+          <button class="px-3 py-2 text-sm bg-blue-600 text-white rounded-md">1</button>
+          <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">2</button>
           <span class="px-2 text-sm text-gray-500">...</span>
-          <button class="px-4 py-2 text-sm border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 shadow-sm">6689</button>
-          <button class="px-4 py-2 text-sm border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 shadow-sm">6690</button>
-          <button class="px-4 py-2 text-sm border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 shadow-sm">
+          <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">6689</button>
+          <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">6690</button>
+          <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
