@@ -82,21 +82,68 @@
 
       <!-- Search and Filters -->
       <div class="flex items-center justify-between mb-6">
-        <div class="flex-1 max-w-md">
+        <div class="flex items-center space-x-4 flex-1">
           <div class="relative">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
             <input 
               type="text" 
-              placeholder="Search" 
-              class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Search products, brands, categories..." 
+              class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             >
           </div>
+          
+          <!-- Quick Filters -->
+          <div class="flex items-center space-x-2">
+            <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+              <option>All Brands</option>
+              <option>Kubota</option>
+              <option>Toro</option>
+              <option>Bandit</option>
+              <option>Bobcat</option>
+            </select>
+            
+            <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+              <option>All Conditions</option>
+              <option>New</option>
+              <option>Used</option>
+            </select>
+            
+            <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+              <option>All Locations</option>
+              <option>Shakopee</option>
+              <option>Anoka</option>
+              <option>Loretto</option>
+            </select>
+          </div>
         </div>
+        
         <div class="flex items-center space-x-3">
+          <!-- Bulk Actions -->
+          <div class="flex items-center space-x-2 border-r border-gray-300 pr-3">
+            <button class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50" disabled>
+              <i class="fas fa-edit mr-2"></i>
+              Bulk Edit
+            </button>
+            <button class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50" disabled>
+              <i class="fas fa-trash mr-2"></i>
+              Delete
+            </button>
+          </div>
+          
           <button class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-columns mr-2"></i>
             Edit Columns
           </button>
+          
+          <div class="flex items-center space-x-1 bg-gray-100 rounded-md p-1">
+            <button class="px-2 py-1 text-sm bg-white rounded shadow-sm">
+              <i class="fas fa-list"></i>
+            </button>
+            <button class="px-2 py-1 text-sm text-gray-600 hover:bg-white hover:rounded hover:shadow-sm">
+              <i class="fas fa-th-large"></i>
+            </button>
+          </div>
+          
           <button class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-star mr-2"></i>
             Save
@@ -119,25 +166,37 @@
         <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
           <div class="flex items-center gap-6 text-xs font-medium text-gray-500 uppercase tracking-wide min-w-max">
             <div class="w-12 flex-shrink-0">
-              <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+              <input type="checkbox" @change="toggleSelectAll" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
             </div>
             <div class="w-80 flex-shrink-0 flex items-center space-x-2">
               <span>Product</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-24 flex-shrink-0">
               <span>Brand</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-32 flex-shrink-0">
               <span>Category</span>
             </div>
             <div class="w-24 flex-shrink-0">
               <span>Condition</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-24 flex-shrink-0">
               <span>Location</span>
             </div>
             <div class="w-24 flex-shrink-0">
               <span>MSRP</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-24 flex-shrink-0">
               <span>Our Cost</span>
@@ -147,9 +206,15 @@
             </div>
             <div class="w-24 flex-shrink-0">
               <span>Sale Price</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-32 flex-shrink-0">
               <span>Created Date</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-24 flex-shrink-0">
               <span>Created Time</span>
@@ -165,6 +230,9 @@
             </div>
             <div class="w-24 flex-shrink-0">
               <span>AI Score</span>
+              <button class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-sort text-xs"></i>
+              </button>
             </div>
             <div class="w-32 flex-shrink-0">
               <span>Actions</span>
@@ -178,14 +246,17 @@
             <div class="flex items-center gap-6 min-w-max">
               <!-- Checkbox -->
               <div class="w-12 flex-shrink-0">
-                <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <input type="checkbox" v-model="product.selected" @change="updateBulkActions" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
               </div>
               
               <!-- Product Info -->
               <div class="w-80 flex-shrink-0">
                 <div class="flex items-center space-x-3">
                   <div class="flex-shrink-0">
-                    <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
+                    <div class="relative">
+                      <img :src="product.image" :alt="product.name" class="w-12 h-12 rounded-md object-cover">
+                      <div v-if="product.condition === 'New'" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
                   </div>
                   <div class="min-w-0 flex-1">
                     <h3 class="text-sm font-medium text-gray-900 truncate">
@@ -193,6 +264,10 @@
                     </h3>
                     <div class="flex items-center space-x-2 mt-1 text-xs text-gray-500">
                       <p class="text-xs text-gray-500">{{ product.unit }}</p>
+                      <span v-if="product.isLowStock" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>
+                        Low Stock
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -283,15 +358,31 @@
               <!-- Actions -->
               <div class="w-32 flex-shrink-0">
                 <div class="flex items-center space-x-2">
-                  <button class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors">
+                  <button @click="viewProduct(product.id)" class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" title="View Product">
                     <i class="fas fa-eye text-sm"></i>
                   </button>
-                  <button class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors">
+                  <button @click="editProduct(product.id)" class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors" title="Edit Product">
                     <i class="fas fa-edit text-sm"></i>
                   </button>
-                  <button class="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-md transition-colors">
+                  <button @click="openAIModal(product)" class="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-md transition-colors" title="AI Optimize">
                     <i class="fas fa-robot text-sm"></i>
                   </button>
+                  <div class="relative">
+                    <button @click="toggleProductMenu(product.id)" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-md transition-colors">
+                      <i class="fas fa-ellipsis-v text-sm"></i>
+                    </button>
+                    <div v-if="product.showMenu" class="absolute right-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                      <button @click="duplicateProduct(product.id)" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-copy mr-2"></i>Duplicate
+                      </button>
+                      <button @click="archiveProduct(product.id)" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-archive mr-2"></i>Archive
+                      </button>
+                      <button @click="deleteProduct(product.id)" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                        <i class="fas fa-trash mr-2"></i>Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,8 +398,14 @@
             <option>12 Per Page</option>
             <option>24 Per Page</option>
             <option>48 Per Page</option>
+            <option>100 Per Page</option>
           </select>
-          <span class="text-sm text-gray-700">Total Records: <span class="font-medium">80,263</span></span>
+          <span class="text-sm text-gray-700">
+            Showing <span class="font-medium">1-12</span> of <span class="font-medium">80,263</span> products
+            <span v-if="selectedCount > 0" class="ml-2 text-blue-600">
+              ({{ selectedCount }} selected)
+            </span>
+          </span>
         </div>
         <div class="flex items-center space-x-2">
           <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
@@ -316,12 +413,17 @@
           </button>
           <button class="px-3 py-2 text-sm bg-blue-600 text-white rounded-md">1</button>
           <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">2</button>
+          <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">3</button>
           <span class="px-2 text-sm text-gray-500">...</span>
           <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">6689</button>
           <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">6690</button>
           <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-chevron-right"></i>
           </button>
+          <div class="ml-4 flex items-center space-x-2">
+            <span class="text-sm text-gray-500">Go to page:</span>
+            <input type="number" min="1" max="6690" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+          </div>
         </div>
       </div>
     </div>
@@ -356,6 +458,9 @@ export default {
         },
         {
           id: 2,
+          selected: false,
+          showMenu: false,
+          isLowStock: true,
           image: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1',
           name: 'Q Kubota L2502HST Compact Tractor 245748',
           unit: '245748',
@@ -376,6 +481,9 @@ export default {
         },
         {
           id: 3,
+          selected: false,
+          showMenu: false,
+          isLowStock: false,
           image: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1',
           name: '135-2449 TORO',
           unit: '135-2449',
@@ -518,6 +626,49 @@ export default {
     }
   },
   methods: {
+    toggleSelectAll() {
+      this.allSelected = !this.allSelected
+      this.products.forEach(product => {
+        product.selected = this.allSelected
+      })
+      this.updateBulkActions()
+    },
+    updateBulkActions() {
+      this.selectedCount = this.products.filter(p => p.selected).length
+    },
+    toggleProductMenu(productId) {
+      this.products.forEach(product => {
+        if (product.id === productId) {
+          product.showMenu = !product.showMenu
+        } else {
+          product.showMenu = false
+        }
+      })
+    },
+    viewProduct(id) {
+      console.log('Viewing product:', id)
+      // Add view product logic
+    },
+    editProduct(id) {
+      console.log('Editing product:', id)
+      // Add edit product logic
+    },
+    openAIModal(product) {
+      console.log('Opening AI modal for:', product.name)
+      // Add AI modal logic
+    },
+    duplicateProduct(id) {
+      console.log('Duplicating product:', id)
+      // Add duplicate logic
+    },
+    archiveProduct(id) {
+      console.log('Archiving product:', id)
+      // Add archive logic
+    },
+    deleteProduct(id) {
+      console.log('Deleting product:', id)
+      // Add delete logic
+    },
     getAIScoreColor(score) {
       if (score >= 80) return 'bg-green-500'
       if (score >= 60) return 'bg-yellow-500'
