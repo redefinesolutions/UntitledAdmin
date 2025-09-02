@@ -5,6 +5,10 @@
       <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-semibold text-gray-900">Product</h1>
         <div class="flex items-center space-x-3">
+          <button class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-md hover:from-purple-700 hover:to-blue-700 flex items-center">
+            <i class="fas fa-magic mr-2"></i>
+            AI Optimize
+          </button>
           <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
             Export
           </button>
@@ -14,6 +18,53 @@
           <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
             + Add Bundle
           </button>
+        </div>
+      </div>
+
+      <!-- AI Insights Panel -->
+      <div class="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <i class="fas fa-brain text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">AI Product Insights</h3>
+              <p class="text-sm text-gray-600">Powered by advanced machine learning algorithms</p>
+            </div>
+          </div>
+          <button class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          <div class="bg-white rounded-lg p-4 border border-blue-100">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700">Price Optimization</span>
+              <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">+12% Revenue</span>
+            </div>
+            <p class="text-xs text-gray-600">AI suggests optimal pricing for 247 products to maximize profit margins</p>
+            <button class="text-blue-600 text-xs font-medium mt-2 hover:text-blue-700">View Suggestions →</button>
+          </div>
+          
+          <div class="bg-white rounded-lg p-4 border border-purple-100">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700">Smart Categorization</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">89% Accuracy</span>
+            </div>
+            <p class="text-xs text-gray-600">Auto-categorize 1,234 uncategorized products using AI image recognition</p>
+            <button class="text-purple-600 text-xs font-medium mt-2 hover:text-purple-700">Auto-Categorize →</button>
+          </div>
+          
+          <div class="bg-white rounded-lg p-4 border border-indigo-100">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700">Demand Forecasting</span>
+              <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">High Demand</span>
+            </div>
+            <p class="text-xs text-gray-600">Predict inventory needs for next 30 days based on market trends</p>
+            <button class="text-indigo-600 text-xs font-medium mt-2 hover:text-indigo-700">View Forecast →</button>
+          </div>
         </div>
       </div>
 
@@ -54,6 +105,10 @@
             <i class="fas fa-filter mr-2"></i>
             More Filters(0)
           </button>
+          <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-gradient-to-r from-green-500 to-teal-500 rounded-md hover:from-green-600 hover:to-teal-600">
+            <i class="fas fa-robot mr-2"></i>
+            AI Assistant
+          </button>
         </div>
       </div>
 
@@ -80,6 +135,7 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created Date</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Score</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -110,6 +166,19 @@
                 <td class="px-6 py-4 text-sm text-gray-500">
                   <div>{{ product.updated }}</div>
                   <div class="text-xs">{{ product.updatedTime }}</div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center space-x-2">
+                    <div class="flex items-center">
+                      <div class="w-16 bg-gray-200 rounded-full h-2">
+                        <div :class="getAIScoreColor(product.aiScore)" :style="`width: ${product.aiScore}%`" class="h-2 rounded-full"></div>
+                      </div>
+                      <span class="ml-2 text-xs font-medium text-gray-700">{{ product.aiScore }}%</span>
+                    </div>
+                    <button class="text-blue-600 hover:text-blue-700" :title="getAIRecommendation(product.aiScore)">
+                      <i class="fas fa-info-circle text-xs"></i>
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -168,7 +237,8 @@ export default {
           createdTime: '11:19 AM',
           createdBy: 'Amin N',
           updated: '05/20',
-          updatedTime: '03:07'
+          updatedTime: '03:07',
+          aiScore: 85
         },
         {
           id: 2,
@@ -187,7 +257,8 @@ export default {
           createdTime: '12:18 PM',
           createdBy: 'Amin N',
           updated: '01/20',
-          updatedTime: '12:10'
+          updatedTime: '12:10',
+          aiScore: 92
         },
         {
           id: 3,
@@ -206,7 +277,8 @@ export default {
           createdTime: '08:06 AM',
           createdBy: 'Parvej Shaikh',
           updated: '08/01',
-          updatedTime: '22:28'
+          updatedTime: '22:28',
+          aiScore: 78
         },
         {
           id: 4,
@@ -225,7 +297,8 @@ export default {
           createdTime: '08:52 AM',
           createdBy: 'Parvej Shaikh',
           updated: '07/20',
-          updatedTime: '11:58'
+          updatedTime: '11:58',
+          aiScore: 65
         },
         {
           id: 5,
@@ -244,7 +317,8 @@ export default {
           createdTime: '08:52 AM',
           createdBy: 'Parvej Shaikh',
           updated: '07/20',
-          updatedTime: '11:59'
+          updatedTime: '11:59',
+          aiScore: 67
         },
         {
           id: 6,
@@ -263,7 +337,8 @@ export default {
           createdTime: '08:52 AM',
           createdBy: 'Parvej Shaikh',
           updated: '07/20',
-          updatedTime: '11:59'
+          updatedTime: '11:59',
+          aiScore: 71
         },
         {
           id: 7,
@@ -282,7 +357,8 @@ export default {
           createdTime: '08:52 AM',
           createdBy: 'Parvej Shaikh',
           updated: '07/20',
-          updatedTime: '11:59'
+          updatedTime: '11:59',
+          aiScore: 69
         },
         {
           id: 8,
@@ -301,7 +377,8 @@ export default {
           createdTime: '08:02 AM',
           createdBy: 'Amin N',
           updated: '07/11',
-          updatedTime: '22:05'
+          updatedTime: '22:05',
+          aiScore: 58
         },
         {
           id: 9,
@@ -320,9 +397,22 @@ export default {
           createdTime: '07:00 AM',
           createdBy: 'Amin N',
           updated: '05/11',
-          updatedTime: '07:30'
+          updatedTime: '07:30',
+          aiScore: 74
         }
       ]
+    }
+  },
+  methods: {
+    getAIScoreColor(score) {
+      if (score >= 80) return 'bg-green-500'
+      if (score >= 60) return 'bg-yellow-500'
+      return 'bg-red-500'
+    },
+    getAIRecommendation(score) {
+      if (score >= 80) return 'Excellent optimization - product is performing well'
+      if (score >= 60) return 'Good potential - consider price or description optimization'
+      return 'Needs attention - multiple optimization opportunities available'
     }
   }
 }
