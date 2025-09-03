@@ -5,6 +5,10 @@
       <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-semibold text-gray-900">Product</h1>
         <div class="flex items-center space-x-3">
+          <button @click="toggleEditMode" :class="editMode ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'" class="px-4 py-2 text-sm font-medium text-white rounded-md flex items-center">
+            <i :class="editMode ? 'fas fa-save' : 'fas fa-edit'" class="mr-2"></i>
+            {{ editMode ? 'Save Changes' : 'Edit Mode' }}
+          </button>
           <button class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-md hover:from-purple-700 hover:to-blue-700 flex items-center">
             <i class="fas fa-magic mr-2"></i>
             AI Optimize
@@ -172,29 +176,81 @@
                   <div class="relative">
                     <img :src="product.image" :alt="product.name" class="w-14 h-14 rounded-lg object-cover shadow-sm border border-gray-200 group-hover:shadow-md transition-shadow duration-200">
                     <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" v-if="product.condition === 'New'"></div>
+                    <button v-if="editMode" @click="selectImage(product.id)" class="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                      <i class="fas fa-camera text-white text-sm"></i>
+                    </button>
                   </div>
                 </td>
                 <td class="px-6 py-4">
-                  <div class="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-200">{{ product.name }}</div>
+                  <div v-if="!editMode" class="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-200">{{ product.name }}</div>
+                  <input v-else v-model="product.name" @blur="saveField(product.id, 'name', product.name)" class="w-full text-sm font-semibold text-gray-900 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
                   <div class="text-xs text-gray-500 mt-1">ID: {{ product.unit }}</div>
                 </td>
-                <td class="px-6 py-4 text-sm text-gray-600">{{ product.unit }}</td>
                 <td class="px-6 py-4">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  <span v-if="!editMode" class="text-sm text-gray-600">{{ product.unit }}</span>
+                  <input v-else v-model="product.unit" @blur="saveField(product.id, 'unit', product.unit)" class="w-full text-sm text-gray-600 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                </td>
+                <td class="px-6 py-4">
+                  <select v-if="editMode" v-model="product.brand" @change="saveField(product.id, 'brand', product.brand)" class="text-xs font-medium bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                    <option v-for="brand in availableBrands" :key="brand" :value="brand">{{ brand }}</option>
+                  </select>
+                  <span v-else class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                     {{ product.brand }}
                   </span>
                 </td>
-                <td class="px-6 py-4 text-xs text-gray-600">{{ product.category }}</td>
                 <td class="px-6 py-4">
-                  <span :class="getConditionBadge(product.condition)" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
+                  <select v-if="editMode" v-model="product.category" @change="saveField(product.id, 'category', product.category)" class="w-full text-xs text-gray-600 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                    <option v-for="category in availableCategories" :key="category" :value="category">{{ category }}</option>
+                  </select>
+                  <span v-else class="text-xs text-gray-600">{{ product.category }}</span>
+                </td>
+                <td class="px-6 py-4">
+                  <select v-if="editMode" v-model="product.condition" @change="saveField(product.id, 'condition', product.condition)" class="text-xs font-medium bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Select Condition</option>
+                    <option value="New">New</option>
+                    <option value="Used">Used</option>
+                    <option value="Refurbished">Refurbished</option>
+                    <option value="Damaged">Damaged</option>
+                  </select>
+                  <span v-else :class="getConditionBadge(product.condition)" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
                     {{ product.condition || 'N/A' }}
                   </span>
                 </td>
-                <td class="px-6 py-4 text-sm text-gray-600">{{ product.location || 'N/A' }}</td>
-                <td class="px-6 py-4 text-sm font-semibold text-gray-900">${{ product.msrp }}</td>
-                <td class="px-6 py-4 text-sm text-gray-600">${{ product.ourCost }}</td>
-                <td class="px-6 py-4 text-sm text-gray-600">${{ product.imap }}</td>
-                <td class="px-6 py-4 text-sm font-semibold text-green-600">${{ product.salePrice }}</td>
+                <td class="px-6 py-4">
+                  <select v-if="editMode" v-model="product.location" @change="saveField(product.id, 'location', product.location)" class="text-sm text-gray-600 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Select Location</option>
+                    <option v-for="location in availableLocations" :key="location" :value="location">{{ location }}</option>
+                  </select>
+                  <span v-else class="text-sm text-gray-600">{{ product.location || 'N/A' }}</span>
+                </td>
+                <td class="px-6 py-4">
+                  <div v-if="editMode" class="flex items-center">
+                    <span class="text-sm text-gray-500 mr-1">$</span>
+                    <input v-model.number="product.msrp" @blur="saveField(product.id, 'msrp', product.msrp)" type="number" step="0.01" class="w-20 text-sm font-semibold text-gray-900 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                  <span v-else class="text-sm font-semibold text-gray-900">${{ product.msrp }}</span>
+                </td>
+                <td class="px-6 py-4">
+                  <div v-if="editMode" class="flex items-center">
+                    <span class="text-sm text-gray-500 mr-1">$</span>
+                    <input v-model.number="product.ourCost" @blur="saveField(product.id, 'ourCost', product.ourCost)" type="number" step="0.01" class="w-20 text-sm text-gray-600 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                  <span v-else class="text-sm text-gray-600">${{ product.ourCost }}</span>
+                </td>
+                <td class="px-6 py-4">
+                  <div v-if="editMode" class="flex items-center">
+                    <span class="text-sm text-gray-500 mr-1">$</span>
+                    <input v-model.number="product.imap" @blur="saveField(product.id, 'imap', product.imap)" type="number" step="0.01" class="w-20 text-sm text-gray-600 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                  <span v-else class="text-sm text-gray-600">${{ product.imap }}</span>
+                </td>
+                <td class="px-6 py-4">
+                  <div v-if="editMode" class="flex items-center">
+                    <span class="text-sm text-gray-500 mr-1">$</span>
+                    <input v-model.number="product.salePrice" @blur="saveField(product.id, 'salePrice', product.salePrice)" type="number" step="0.01" class="w-20 text-sm font-semibold text-green-600 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                  <span v-else class="text-sm font-semibold text-green-600">${{ product.salePrice }}</span>
+                </td>
                 <td class="px-6 py-4 text-sm text-gray-500">
                   <div>{{ product.createdDate }}</div>
                   <div class="text-xs text-gray-400">{{ product.createdTime }}</div>
@@ -263,6 +319,20 @@ export default {
   name: 'ProductsPage',
   data() {
     return {
+      editMode: false,
+      changedFields: new Set(),
+      availableBrands: ['Others', 'Kubota', 'Toro', 'Bandit', 'Bobcat', 'John Deere', 'Caterpillar', 'Case', 'New Holland'],
+      availableCategories: [
+        'Equipment > Tractors > Compact Tractors',
+        'Parts > Kubota',
+        'Parts > Toro', 
+        'Equipment > Grinders',
+        'Attachments > Blades',
+        'Equipment > Skid Steer Loaders',
+        'Equipment > Excavators',
+        'Equipment > Mowers'
+      ],
+      availableLocations: ['Shakopee', 'Anoka', 'Loretto', 'Minneapolis', 'St. Paul', 'Bloomington'],
       products: [
         {
           id: 1,
@@ -448,6 +518,54 @@ export default {
     }
   },
   methods: {
+    toggleEditMode() {
+      if (this.editMode && this.changedFields.size > 0) {
+        // Save all changes
+        this.saveAllChanges()
+      }
+      this.editMode = !this.editMode
+      if (!this.editMode) {
+        this.changedFields.clear()
+      }
+    },
+    saveField(productId, field, value) {
+      this.changedFields.add(`${productId}-${field}`)
+      console.log(`Saving ${field} for product ${productId}:`, value)
+      // Here you would typically make an API call to save the field
+      // For now, we'll just log it and show a visual indicator
+      this.showSaveIndicator(productId, field)
+    },
+    saveAllChanges() {
+      if (this.changedFields.size > 0) {
+        console.log('Saving all changes:', Array.from(this.changedFields))
+        // Here you would make API calls to save all changed fields
+        this.showSuccessMessage(`Saved ${this.changedFields.size} changes successfully!`)
+        this.changedFields.clear()
+      }
+    },
+    selectImage(productId) {
+      console.log('Opening image selector for product:', productId)
+      // Here you would open an image upload/selection modal
+      this.showInfoMessage('Image upload functionality would open here')
+    },
+    showSaveIndicator(productId, field) {
+      // Visual feedback for field save
+      const element = document.querySelector(`[data-product-id="${productId}"][data-field="${field}"]`)
+      if (element) {
+        element.classList.add('bg-green-100', 'border-green-300')
+        setTimeout(() => {
+          element.classList.remove('bg-green-100', 'border-green-300')
+        }, 1000)
+      }
+    },
+    showSuccessMessage(message) {
+      // You could integrate with a toast notification system here
+      alert(message)
+    },
+    showInfoMessage(message) {
+      // You could integrate with a toast notification system here  
+      alert(message)
+    },
     getAIScoreColor(score) {
       if (score >= 80) return 'bg-green-500'
       if (score >= 60) return 'bg-yellow-500'
