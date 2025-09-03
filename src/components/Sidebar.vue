@@ -6,7 +6,7 @@
         <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
           <span class="text-white font-bold text-sm">L</span>
         </div>
-        <span class="font-semibold text-gray-900">Demo Pro</span>
+        <span class="font-semibold text-gray-900">Lano</span>
       </div>
     </div>
 
