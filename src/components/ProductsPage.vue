@@ -215,6 +215,16 @@
                   <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
                 </div>
               </div>
+              <div class="w-24 flex-shrink-0 flex items-center">
+                AI SCORE
+                <div class="ml-2 flex flex-col">
+                  <i class="fas fa-chevron-up text-xs text-gray-400 leading-none"></i>
+                  <i class="fas fa-chevron-down text-xs text-gray-400 leading-none"></i>
+                </div>
+              </div>
+              <div class="w-32 flex-shrink-0 flex items-center">
+                AI ACTIONS
+              </div>
             </div>
           </div>
 
@@ -319,6 +329,57 @@
                 <!-- Discontinue -->
                 <div class="w-28 flex-shrink-0">
                   <span class="text-sm text-gray-600">No</span>
+                </div>
+                
+                <!-- AI Score -->
+                <div class="w-24 flex-shrink-0">
+                  <div class="flex items-center space-x-2">
+                    <div class="flex items-center space-x-1">
+                      <div :class="getAIScoreColor(product.aiScore)" class="w-2 h-2 rounded-full"></div>
+                      <span :class="getAIScoreTextColor(product.aiScore)" class="text-sm font-medium">{{ product.aiScore }}</span>
+                    </div>
+                    <div class="relative group">
+                      <i class="fas fa-info-circle text-gray-400 text-xs cursor-help"></i>
+                      <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                        {{ getAIRecommendation(product.aiScore) }}
+                        <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- AI Actions -->
+                <div class="w-32 flex-shrink-0">
+                  <div class="flex items-center space-x-1">
+                    <button 
+                      @click="openAIModal(product)"
+                      class="p-1.5 text-purple-600 hover:bg-purple-50 rounded-md transition-colors duration-200"
+                      title="AI Optimize"
+                    >
+                      <i class="fas fa-magic text-xs"></i>
+                    </button>
+                    <button 
+                      @click="generateAIDescription(product)"
+                      class="p-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
+                      title="AI Description"
+                    >
+                      <i class="fas fa-edit text-xs"></i>
+                    </button>
+                    <button 
+                      @click="optimizeAIPrice(product)"
+                      class="p-1.5 text-green-600 hover:bg-green-50 rounded-md transition-colors duration-200"
+                      title="AI Pricing"
+                    >
+                      <i class="fas fa-dollar-sign text-xs"></i>
+                    </button>
+                    <button 
+                      @click="categorizeWithAI(product)"
+                      class="p-1.5 text-orange-600 hover:bg-orange-50 rounded-md transition-colors duration-200"
+                      title="AI Categorize"
+                    >
+                      <i class="fas fa-tags text-xs"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -602,6 +663,18 @@ export default {
     openAIModal(product) {
       console.log('Opening AI modal for:', product.name)
       // Add AI modal logic
+    },
+    generateAIDescription(product) {
+      console.log('Generating AI description for:', product.name)
+      // Add AI description generation logic
+    },
+    optimizeAIPrice(product) {
+      console.log('Optimizing price with AI for:', product.name)
+      // Add AI price optimization logic
+    },
+    categorizeWithAI(product) {
+      console.log('Auto-categorizing with AI:', product.name)
+      // Add AI categorization logic
     },
     duplicateProduct(id) {
       console.log('Duplicating product:', id)
