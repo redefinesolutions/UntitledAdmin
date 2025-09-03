@@ -4,7 +4,7 @@
     <div class="p-6 border-b border-gray-200">
       <div class="flex items-center space-x-2">
         <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-          <span class="text-white font-bold text-sm">DP</span>
+          <span class="text-white font-bold text-sm">L</span>
         </div>
         <span class="font-semibold text-gray-900">Demo Pro</span>
       </div>
