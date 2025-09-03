@@ -95,7 +95,7 @@
         </div>
         
         <div class="flex items-center space-x-3">
-          <button class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+          <button @click="showFilterModal = true" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
             <i class="fas fa-filter mr-2"></i>
             Filters
           </button>
@@ -359,14 +359,28 @@
         </div>
       </div>
     </div>
+    
+    <!-- Filter Modal -->
+    <FilterModal 
+      :isOpen="showFilterModal" 
+      @close="showFilterModal = false"
+      @apply-filters="handleApplyFilters"
+    />
   </div>
 </template>
 
 <script>
+import FilterModal from './FilterModal.vue'
+
 export default {
   name: 'ProductsPage',
+  components: {
+    FilterModal
+  },
   data() {
     return {
+      showFilterModal: false,
+      appliedFilters: {},
       products: [
         {
           id: 1,
@@ -623,6 +637,12 @@ export default {
     },
     getInitials(name) {
       return name.split(' ').map(n => n[0]).join('').toUpperCase()
+    },
+    handleApplyFilters(filters) {
+      this.appliedFilters = { ...filters }
+      console.log('Applied filters:', filters)
+      // Here you would typically filter the products array or make an API call
+      // For demo purposes, we're just logging the filters
     }
   }
 }
